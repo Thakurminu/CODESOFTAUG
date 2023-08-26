@@ -1,0 +1,96 @@
+from tkinter import*
+root=Tk()
+root.geometry("410x300+500+350")
+root.resizable(0,0)
+root.config(bg="#ccc")
+root.title("Calculator")
+def click(p):
+    x=a.get()
+    if len(x)==1 and x[0]=="0":
+        a.set(p)
+    else:
+        a.set(x+p)
+def operator(o):
+    x=a.get()
+    a.set(f"{x}{o}")
+def clear():
+    a.set("0")
+def equal():
+    x=a.get()
+    if ("+" in x):
+        l=list(map(int,x.split("+")))
+        sum=0
+        for i in l:
+            sum+=i
+        a.set(sum)
+    elif("-" in x):
+        l=list(map(int,x.split("-")))
+        sum=l[0]
+        for i in range(1,len(l)):
+            sum-=l[i]
+        a.set(sum)
+    elif("x" in x):
+        l=list(map(int,x.split("x")))
+        sum=1
+        for i in l:
+            sum*=i
+        a.set(sum)
+    elif("/" in x):
+        l=list(map(int,x.split("/")))
+        a.set(l[0]/l[1])
+    else:
+        a.set("error")
+a=StringVar()
+inp=Entry(root,justify="right",font=("arial,100"),fg="black",bg="white",textvariable=a)
+inp.place(x=0,y=0,height=50,width=410)
+
+bt7=Button(root,text="7",font=("ariel",20),bg="grey",fg="white",command=lambda:click("7"),activebackground="red",activeforeground="white")
+bt7.place(x=10,y=60,height=50,width=90)
+
+bt8=Button(root,text="8",font=("ariel",20),bg="grey",fg="white",command=lambda: click("8"))
+bt8.place(x=110,y=60,height=50,width=90)
+
+bt9=Button(root,text="9",font=("ariel",20),bg="grey",fg="white",command=lambda: click("9"))
+bt9.place(x=210,y=60,height=50,width=90)
+
+sym=Button(root,text="+",font=("ariel",20),bg="grey",fg="white",command=lambda: operator("+"))
+sym.place(x=310,y=60,height=50,width=90)
+
+bt4=Button(root,text="4",font=("ariel",20),bg="grey",fg="white",command=lambda: click("4"))
+bt4.place(x=10,y=120,height=50,width=90)
+
+bt5=Button(root,text="5",font=("ariel",20),bg="grey",fg="white",command=lambda: click("5"))
+bt5.place(x=110,y=120,height=50,width=90)
+
+bt6=Button(root,text="6",font=("ariel",20),bg="grey",fg="white",command=lambda: click("6"))
+bt6.place(x=210,y=120,height=50,width=90)
+
+sym1=Button(root,text="-",font=("ariel",20),bg="grey",fg="white",command=lambda: operator("-"))
+sym1.place(x=310,y=120,height=50,width=90)
+
+bt1=Button(root,text="1",font=("ariel",20),bg="grey",fg="white",command=lambda: click("1"))
+bt1.place(x=10,y=180,height=50,width=90)
+
+bt2=Button(root,text="2",font=("ariel",20),bg="grey",fg="white",command=lambda: click("2"))
+bt2.place(x=110,y=180,height=50,width=90)
+
+bt3=Button(root,text="3",font=("ariel",20),bg="grey",fg="white",command=lambda: click("3"))
+bt3.place(x=210,y=180,height=50,width=90)
+
+sym2=Button(root,text="x",font=("ariel",20),bg="grey",fg="white",command=lambda: operator("x"))
+sym2.place(x=310,y=180,height=50,width=90)
+
+bt0=Button(root,text="0",font=("ariel",20),bg="grey",fg="white",command=lambda: click("0"))
+bt0.place(x=10,y=240,height=50,width=90)
+
+btn=Button(root,text="=",font=("ariel",20),bg="grey",fg="white",command=equal)
+btn.place(x=110,y=240,height=50,width=90)
+
+btc=Button(root,text="Clr",font=("ariel",20),bg="grey",fg="white",command=clear)
+btc.place(x=210,y=240,height=50,width=90)
+
+
+sym3=Button(root,text="/",font=("ariel",20),bg="grey",fg="white",command=lambda: operator("/"))
+sym3.place(x=310,y=240,height=50,width=90)
+
+root.mainloop()
